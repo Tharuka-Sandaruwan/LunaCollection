@@ -128,7 +128,7 @@ export const PlaceOrderScreen = () => {
 					</ListGroup>
 				</Col>
 				<Col md={4}>
-					{/* <Card>
+					<Card>
 						<ListGroup variant='flush'>
 							<ListGroupItem>
 								<h2>Order Summary</h2>
@@ -181,7 +181,7 @@ export const PlaceOrderScreen = () => {
 								)}
 							</ListGroupItem>
 						</ListGroup>
-					</Card> */}
+					</Card>
 				</Col>
 			</Row>
 		</>
