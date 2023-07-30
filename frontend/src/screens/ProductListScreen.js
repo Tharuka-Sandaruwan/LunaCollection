@@ -144,4 +144,4 @@ const ProductListScreen = () => {
 	)
 }
 
-// export default ProductListScreen
+export default ProductListScreen
