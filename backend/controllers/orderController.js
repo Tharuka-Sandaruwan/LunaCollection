@@ -99,7 +99,13 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
 		throw new Error('Requster is not allowed to make the update')
 	}
 })
-
+//@desc get logged in user orders
+//@route GET/api/orders/myorders
+//@access private
+const getMyOrders = asyncHandler(async (req, res) => {
+	const orders = await Order.find({ user: req.user._id }).sort({ delivery: 1 })
+	res.status(200).json(orders)
+})
 
 //@desc get all orders of a user by admin
 //@route GET/api/orders/user/:id
