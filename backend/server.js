@@ -47,6 +47,9 @@ app.use('/api/users', userRoutes)
 app.use('/api/overview', overviewRoutes)
 app.use('/api/orders', orderRoutes)
 app.use('/api/orders', orderRoutes)
+app.use('/api/cart', cartRoutes)
+app.use('/api/categories', categoryRoutes)
+app.use('/api/reviews', reviewRoutes)
 
 
 app.get('/api/config/paypal', (req, res) => {
