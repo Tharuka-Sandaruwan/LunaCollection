@@ -4,6 +4,7 @@ import colors from 'colors'
 import AWS from 'aws-sdk'
 import cors from 'cors'
 import morgan from 'morgan'
+import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
 
 import productRoutes from './routes/productRoutes.js'
@@ -32,7 +33,7 @@ if (process.env.NODE_ENV === 'development') {
 	app.use(morgan('dev'))
 }
 
-
+app.use(cors())
 app.use(express.json())
 
 app.get('/', (req, res) => {
@@ -51,14 +52,14 @@ app.use('/api/cart', cartRoutes)
 app.use('/api/categories', categoryRoutes)
 app.use('/api/reviews', reviewRoutes)
 
-
 app.get('/api/config/paypal', (req, res) => {
 	res.json(process.env.PAYPAL_CLIENT_ID)
 })
 
 app.use(notFound)
 
-
+app.use(errorHandler)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 
