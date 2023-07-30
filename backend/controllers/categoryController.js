@@ -27,3 +27,13 @@ export const getAllCategories = asyncHandler(async (req, res) => {
 	}
 })
 
+//@desc delete Category
+//@route DELETE/api/categories/:name
+//@access public/Admin
+export const deleteCategory = asyncHandler(async (req, res) => {
+	const categoryName = req.params.name.toUpperCase()
+	const deletedCategory = await Category.findOneAndDelete({
+		name: categoryName,
+	})
+	res.json(deletedCategory)
+})
