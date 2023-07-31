@@ -20,7 +20,7 @@ const initialState = {
 export const cartDataSlice = createSlice({
   name: "cart",
   initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
+
   reducers: {
     resetCart: (state) => {
       state.cartItems = [];
@@ -34,7 +34,6 @@ export const cartDataSlice = createSlice({
       state.isLoading = false;
       state.message = "";
       localStorage.removeItem("cartItems");
-      //localStorage.removeItem("shippingAddress");
     },
 
     setPrices: (state, action) => {
@@ -51,7 +50,6 @@ export const cartDataSlice = createSlice({
       localStorage.setItem(
         "shippingAddress",
         JSON.stringify(state.shippingAddress)
-        //JSON.stringify(action.payload)
       );
     },
     removeFromCart: (state, action) => {
@@ -77,7 +75,6 @@ export const cartDataSlice = createSlice({
         );
 
         if (state.cartItems.length === 0) {
-          //console.log("empty");
           state.cartItems = [item];
         } else if (existItem) {
           console.log("already exists");
@@ -91,7 +88,6 @@ export const cartDataSlice = createSlice({
           state.cartItems = cart;
         } else {
           state.cartItems = [...state.cartItems, item];
-          //console.log("not empty");
         }
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       })
@@ -104,7 +100,6 @@ export const cartDataSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const {
   resetCart,
   removeFromCart,

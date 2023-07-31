@@ -14,7 +14,6 @@ const checkCart = async (id, qty) => {
 };
 
 const cartDataService = {
-  //call the API to check the cart
   checkCart,
 };
 export default cartDataService;
