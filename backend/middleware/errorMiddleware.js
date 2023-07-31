@@ -7,5 +7,14 @@ const notFound = (req, res, next) => {
 	next(error)
 }
 //this overrides default error handler for that it needs to be a function that 1st takes in err as a parameter then req,res,next
+const errorHandler = (err, req, res, next) => {
+	//sometimes we get 200 status code even if its an error
+	//500 means server error
+	const statusCode = res.statusCode === 200 ? 500 : res.statusCode
+	res.json({
+		message: err.message,
+		stack: process.env.NODE_ENV === 'production' ? null : err.stack,
+	})
+}
 
-export { notFound }
+export { notFound, errorHandler }
