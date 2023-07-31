@@ -10,7 +10,7 @@ export const getMonthlyOrders = asyncHandler(async (req, res) => {
 	try {
 		const today = new Date() // Get the current date
 		const oneYearAgo = new Date(today.getFullYear() - 1, today.getMonth(), 1) // Subtract one year from the current date
-		const productCount = Product.count()
+		const productCount = await Product.count()
 		const userCount = await User.count()
 		const UserRegCount = await User.aggregate([
 			{ $match: { createdAt: { $gte: oneYearAgo } } }, // filter users created in the past year
