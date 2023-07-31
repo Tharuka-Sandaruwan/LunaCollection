@@ -32,6 +32,7 @@ const importData = async () => {
 		process.exit(1)
 	}
 }
+
 const destroyData = async () => {
 	try {
 		await Order.deleteMany()
@@ -44,4 +45,10 @@ const destroyData = async () => {
 		console.error(`${error}`.red.inverse)
 		process.exit(1)
 	}
+}
+
+if (process.argv[2] == '-d') {
+	destroyData()
+} else {
+	importData()
 }
