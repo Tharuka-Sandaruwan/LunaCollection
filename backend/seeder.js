@@ -15,6 +15,7 @@ const importData = async () => {
 	try {
 		await Order.deleteMany()
 		await Product.deleteMany()
+		await User.deleteMany()
 
 		const createdUsers = await User.insertMany(users)
 		const adminUser = createdUsers[0]._id
@@ -25,6 +26,19 @@ const importData = async () => {
 
 		await Product.insertMany(sampleProducts)
 		console.log('data imported'.green.inverse)
+		process.exit()
+	} catch (error) {
+		console.error(`${error}`.red.inverse)
+		process.exit(1)
+	}
+}
+const destroyData = async () => {
+	try {
+		await Order.deleteMany()
+		await Product.deleteMany()
+		await User.deleteMany()
+
+		console.log('data destroyed'.green.inverse)
 		process.exit()
 	} catch (error) {
 		console.error(`${error}`.red.inverse)
