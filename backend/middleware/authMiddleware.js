@@ -19,7 +19,10 @@ const protect = asyncHandler(async (req, res, next) => {
 			throw new Error('Not Authorized, token failed')
 		}
 	}
-
+	if (!token) {
+		res.status(401)
+		throw new Error('Not Authorized, no token')
+	}
 	//next()
 })
 const admin = (req, res, next) => {
