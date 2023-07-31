@@ -20,7 +20,7 @@ const protect = asyncHandler(async (req, res, next) => {
 		}
 	}
 
-	next()
+	//next()
 })
 const admin = (req, res, next) => {
 	if (req.user && req.user.isAdmin) {
