@@ -42,7 +42,15 @@ function ProfileScreen() {
 	const reviewsReduxState = useSelector((state) => state.reviews)
 	const profileDetails = useSelector((state) => state.profileDetails)
 
-	 [dispatch, navigate, userInfo]
+	useEffect(() => {
+		if (!userInfo) {
+			navigate('/login')
+		} else {
+			dispatch(getMyOrders())
+			dispatch(getProfile())
+			dispatch(getNeedReviewProducts())
+		}
+	}, [dispatch, navigate, userInfo])
 	if (
 		reviewsReduxState.action === 'reviewProduct' &&
 		reviewsReduxState.isSuccess
