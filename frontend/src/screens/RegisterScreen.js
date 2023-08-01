@@ -97,12 +97,7 @@ function RegisterScreen() {
 					Register
 				</Button>
 			</Form>
-			<Row className='py-3'>
-				<Col>
-					Already a Customer?
-					<Link to={'/login'}>Sign In</Link>
-				</Col>
-			</Row>
+			
 		</FormContainer>
 	)
 }
