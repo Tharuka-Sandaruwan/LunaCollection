@@ -34,6 +34,9 @@ function RegisterScreen() {
 			dispatch(resetLogIn())
 		}
 	}, [
+		userInfo,
+		navigate,
+		isSuccess,
 		message,
 		isError,
 		dispatch,
@@ -71,7 +74,15 @@ function RegisterScreen() {
 						onChange={(e) => setEmail(e.target.value)}
 					></Form.Control>
 				</Form.Group>
-				
+				<Form.Group controlId='password'>
+					<Form.Label>Password</Form.Label>
+					<Form.Control
+						type='password'
+						placeholder='Enter password'
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+					></Form.Control>
+				</Form.Group>
 				<Form.Group controlId='confirmPassword'>
 					<Form.Label>Confirm Password</Form.Label>
 					<Form.Control
