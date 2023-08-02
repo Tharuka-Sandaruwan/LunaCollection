@@ -121,7 +121,12 @@ const UserListScreen = () => {
 						},
 					}}
 				>
-					
+					<DataGrid
+						getRowId={(row) => row._id}
+						rows={allUsersReduxState.usersList || []}
+						columns={columns}
+						components={{ Toolbar: GridToolbar }}
+					/>
 				</Box>
 			)}
 		</>
