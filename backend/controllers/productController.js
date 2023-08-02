@@ -130,6 +130,70 @@ const deleteProductById = asyncHandler(async (req, res) => {
 		}
 	})
 })
+//@desc Update product
+//@route PUT/api/products/:id
+//@access private/Admin
+const updateProductById = asyncHandler(async (req, res) => {
+	const product = await Product.findOne({ _id: req.params.id })
+	if (req.file) {
+		const deleteParams = {
+			Key: product.image.split('amazonaws.com/')[1],
+			Bucket: 'luna-product-images',
+		}
+		s3.deleteObject(deleteParams, (err, data) => {
+			if (err) {
+				throw new Error('Failed to delete Image')
+			}
+			if (data) {
+				const Key = `${product._id}-image${path.extname(req.file.originalname)}`
+				const uploadParams = {
+					Key: Key,
+					Bucket: 'luna-product-images',
+					Body: req.file.buffer,
+				}
+				s3.putObject(uploadParams, async (err, data) => {
+					if (err) {
+						res.status(400)
+						throw new Error(
+							`Failed to upload file to Server, please retry` + err
+						)
+					}
+					if (data) {
+						await Product.findOneAndUpdate(
+							{ _id: req.params.id },
+							{
+								...req.body,
+								image: `https://luna-product-images.s3.ap-south-1.amazonaws.com/${Key}`,
+							}
+						).then(
+							(data) => {
+								res.json('Product Successfully Updated' + data)
+							},
+							(error) => {
+								throw new Error('Product update failed' + error)
+							}
+						)
+					}
+				})
+			}
+		})
+	} else {
+		await Product.findOneAndUpdate(
+			{ _id: req.params.id },
+			{
+				...req.body,
+				image: product.image,
+			}
+		).then(
+			(data) => {
+				res.json('Product Successfully Updated' + data)
+			},
+			(error) => {
+				throw new Error('Product update failed' + error)
+			}
+		)
+	}
+})
 
 //@desc create product
 //@route PUT/api/products/:id
@@ -200,6 +264,7 @@ export {
 	getLatestProducts,
 	getProductById,
 	deleteProductById,
+	updateProductById,
 	createProduct,
 	getTrendingProducts,
 	getProductsAll,
