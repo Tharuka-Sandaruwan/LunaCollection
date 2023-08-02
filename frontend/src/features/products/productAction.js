@@ -101,3 +101,37 @@ export const addProduct = createAsyncThunk(
     }
   }
 );
+
+export const deleteProduct = createAsyncThunk(
+  "product/delete",
+  async (id, thunkAPI) => {
+    try {
+      return await productService.deleteProduct(id);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+export const updateProduct = createAsyncThunk(
+  "product/update",
+  async ({ id, object }, thunkAPI) => {
+    try {
+      console.log(id);
+      return await productService.updateProduct(id, object);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
