@@ -31,7 +31,7 @@ const ShippingScreen = () => {
 	}
 	return (
 		<>
-
+			<CheckoutSteps step1></CheckoutSteps>
 			<FormContainer>
 				<h1>Shipping</h1>
 				<Form onSubmit={submitHandler}>
@@ -68,7 +68,7 @@ const ShippingScreen = () => {
 							onChange={handleOnChange}
 						></Form.Control>
 					</Form.Group>
-					<Form.Group controlId='country'>
+					{/* <Form.Group controlId='country'>
 					<Form.Label>Country</Form.Label>
 					<Form.Control
 						type='text'
@@ -78,7 +78,7 @@ const ShippingScreen = () => {
 						required
 						onChange={handleOnChange}
 					></Form.Control>
-				</Form.Group>
+				</Form.Group> */}
 					<Button type='submit' variant='primary'>
 						Continue
 					</Button>
