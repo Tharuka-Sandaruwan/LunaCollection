@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { registerUser, reset } from '../features/users/logInDataSlice'
 import FormContainer from '../components/FormContainer'
+import { toast } from 'react-toastify'
 import { Button, Form } from 'react-bootstrap'
 import { addShippingAddress } from '../features/cart/cartDataSlice'
 import { useNavigate } from 'react-router-dom'
+import CheckoutSteps from '../components/CheckoutSteps'
 const ShippingScreen = () => {
 	const shippingAddress = useSelector((state) => state.cart.shippingAddress)
 	const [formFields, setFormFields] = useState({
@@ -28,6 +31,7 @@ const ShippingScreen = () => {
 	}
 	return (
 		<>
+
 			<FormContainer>
 				<h1>Shipping</h1>
 				<Form onSubmit={submitHandler}>
