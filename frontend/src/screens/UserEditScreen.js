@@ -323,7 +323,32 @@ function UserEditScreen() {
 						ordersReduxState.action === 'getMyOrders' && (
 							<Message variant={'danger'}>{ordersReduxState.message}</Message>
 						)}
-					
+					<Box
+						m='0 0 0 0'
+						height={'60vh'}
+						sx={{
+							'& .MuiDataGrid-root': {
+								border: 'none',
+							},
+							'& .MuiDataGrid-cell': {
+								borderBottom: 'none',
+							},
+							'& .MuiDataGrid-columnHeaders': {
+								borderBottom: 'none',
+							},
+						}}
+					>
+						<DataGrid
+							getRowId={(row) => row._id}
+							rows={ordersReduxState.orderList || []}
+							columns={columns}
+							components={{ Toolbar: GridToolbar }}
+							rowsPerPageOptions={[5, 10, 20]}
+							pageSize={pageSize}
+							onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+							pagination
+						/>
+					</Box>
 				</Col>
 				<Col md={12}>
 					<h2>Reviews Made</h2>
@@ -361,7 +386,58 @@ function UserEditScreen() {
 					</Box>
 				</Col>
 			</Row>
-			
+			<Modal
+				title='Add review'
+				open={isModalOpen}
+				onOk={handleOk}
+				onCancel={handleCancel}
+				footer={[
+					<>
+						<Button key={'back'} onClick={handleCancel}>
+							CLOSE
+						</Button>
+					</>,
+				]}
+			>
+				<Form>
+					<Form.Group controlId='rating'>
+						<Form.Label>Rating</Form.Label>
+						<Form.Control
+							as='select'
+							value={rating}
+							onChange={(e) => setRating(e.target.value)}
+						>
+							<option key={1} value=''>
+								Select...
+							</option>
+							<option key={2} value='1'>
+								1 - Poor
+							</option>
+							<option key={3} value='2'>
+								2 - Fair
+							</option>
+							<option key={4} value='3'>
+								3 - Good
+							</option>
+							<option key={5} value='4'>
+								4 - Very Good
+							</option>
+							<option key={6} value='5'>
+								5 - Excellent
+							</option>
+						</Form.Control>
+					</Form.Group>
+					<Form.Group controlId={'comment'}>
+						<Form.Label>Comment</Form.Label>
+						<Form.Control
+							as='textarea'
+							row='3'
+							value={comment}
+							onChange={(e) => setComment(e.target.value)}
+						></Form.Control>
+					</Form.Group>
+				</Form>
+			</Modal>
 		</>
 	)
 }
