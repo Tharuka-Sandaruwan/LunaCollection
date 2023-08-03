@@ -323,32 +323,7 @@ function UserEditScreen() {
 						ordersReduxState.action === 'getMyOrders' && (
 							<Message variant={'danger'}>{ordersReduxState.message}</Message>
 						)}
-					<Box
-						m='0 0 0 0'
-						height={'60vh'}
-						sx={{
-							'& .MuiDataGrid-root': {
-								border: 'none',
-							},
-							'& .MuiDataGrid-cell': {
-								borderBottom: 'none',
-							},
-							'& .MuiDataGrid-columnHeaders': {
-								borderBottom: 'none',
-							},
-						}}
-					>
-						<DataGrid
-							getRowId={(row) => row._id}
-							rows={ordersReduxState.orderList || []}
-							columns={columns}
-							components={{ Toolbar: GridToolbar }}
-							rowsPerPageOptions={[5, 10, 20]}
-							pageSize={pageSize}
-							onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-							pagination
-						/>
-					</Box>
+					
 				</Col>
 				<Col md={12}>
 					<h2>Reviews Made</h2>
@@ -386,22 +361,9 @@ function UserEditScreen() {
 					</Box>
 				</Col>
 			</Row>
-			<Modal
-				title='Add review'
-				open={isModalOpen}
-				onOk={handleOk}
-				onCancel={handleCancel}
-				footer={[
-					<>
-						<Button key={'back'} onClick={handleCancel}>
-							CLOSE
-						</Button>
-					</>,
-				]}
-			>
-				
-			</Modal>
+			
 		</>
 	)
 }
 
+export default UserEditScreen
