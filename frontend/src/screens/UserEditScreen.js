@@ -20,7 +20,10 @@ import { Modal, Popconfirm } from 'antd'
 import Rating from '../components/Rating'
 
 function UserEditScreen() {
-	
+	const { id: userId } = useParams()
+	const [searchParams] = useSearchParams()
+	const [email, setEmail] = useState('')
+	const [name, setName] = useState('')
 	const [isAdmin, setIsAdmin] = useState(false)
 	const [ordersList, setOrdersList] = useState([])
 	const [pageSize, setPageSize] = useState(5)
@@ -370,7 +373,16 @@ function UserEditScreen() {
 							},
 						}}
 					>
-						
+						<DataGrid
+							getRowId={(row) => row._id}
+							rows={reviewsReduxState.reviewedList || []}
+							columns={reviewColumns}
+							components={{ Toolbar: GridToolbar }}
+							rowsPerPageOptions={[5, 10, 20]}
+							pageSize={pageSize}
+							onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+							pagination
+						/>
 					</Box>
 				</Col>
 			</Row>
