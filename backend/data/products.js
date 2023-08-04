@@ -1,5 +1,65 @@
 const products = [
 	{
+		name: 'Silver Colored Round Necklace',
+		image: '/images/1.jpg',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam bibendum dui pretium vulputate rhoncus. Praesent in turpis egestas mi tempus placerat',
+		brand: 'Vogue',
+		category: 'Necklace',
+		price: 800.0,
+		countInStock: 10,
+		rating: 4.5,
+		numReviews: 12,
+	},
+	{
+		name: 'Gold Necklace Leafed',
+		image: '/images/download.png',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam bibendum dui pretium vulputate rhoncus. Praesent in turpis egestas mi tempus placerat',
+		brand: 'ipsum',
+		category: 'Necklace',
+		price: 800.0,
+		countInStock: 10,
+		rating: 4.5,
+		numReviews: 12,
+	},
+	{
+		name: 'Twin Necklace Double',
+		image: '/images/23773490327-2.avif',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam bibendum dui pretium vulputate rhoncus. Praesent in turpis egestas mi tempus placerat',
+		brand: 'ipsum',
+		category: 'Necklace',
+		price: 800.0,
+		countInStock: 10,
+		rating: 4.5,
+		numReviews: 12,
+	},
+	{
+		name: 'Twin Necklace Double',
+		image: '/images/23773490327-2.avif',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam bibendum dui pretium vulputate rhoncus. Praesent in turpis egestas mi tempus placerat',
+		brand: 'ipsum',
+		category: 'Necklace',
+		price: 800.0,
+		countInStock: 10,
+		rating: 4.5,
+		numReviews: 12,
+	},
+	{
+		name: 'Twin Necklace Double',
+		image: '/images/8db593194e45b0aa4f73416953cac04d.jpg',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam bibendum dui pretium vulputate rhoncus. Praesent in turpis egestas mi tempus placerat',
+		brand: 'ipsum',
+		category: 'Necklace',
+		price: 800.0,
+		countInStock: 10,
+		rating: 4.5,
+		numReviews: 12,
+	},
+	{
 		name: 'Airpods Wireless Bluetooth Headphones',
 		image: '/images/airpods.jpg',
 		description:
