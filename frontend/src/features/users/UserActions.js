@@ -89,3 +89,58 @@ export const updateProfile = createAsyncThunk(
     }
   }
 );
+
+export const deleteUser = createAsyncThunk(
+  "users/deleteUser",
+  async (id, thunkAPI) => {
+    try {
+      const data = await userService.deleteUser(id);
+      return data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+export const getUser = createAsyncThunk(
+  "users/getUser",
+  async (id, thunkAPI) => {
+    try {
+      const data = await userService.getUserById(id);
+      return data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+export const updateUser = createAsyncThunk(
+  "users/updateUser",
+  async ({ id, object }, thunkAPI) => {
+    try {
+      const data = await userService.updateUserById(id, object);
+      return data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
