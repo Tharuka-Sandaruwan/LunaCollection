@@ -6,7 +6,9 @@ import cartDataReducer from './features/cart/cartDataSlice'
 import orderDataReducer from './features/order/orderDataSlice'
 import logInDataReducer from './features/users/logInDataSlice'
 import profileDataReducer from './features/users/profileDataSlice'
-
+import userListDataReducer from './features/users/userListDataSlice'
+import usersDataReducer from './features/users/usersDataSlice'
+import reviewDataReducer from './features/reviews/reviewDataSlice'
 
 const store = configureStore({
 	reducer: {
@@ -16,7 +18,9 @@ const store = configureStore({
 		logInDetails: logInDataReducer,
 		profileDetails: profileDataReducer,
 		orders: orderDataReducer,
-		
+		allUsers: userListDataReducer,
+		users: usersDataReducer,
+		reviews: reviewDataReducer,
 	},
 })
 
