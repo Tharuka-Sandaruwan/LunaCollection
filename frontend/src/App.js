@@ -61,7 +61,26 @@ const App = () => {
 								path='/shop/category/:category/page/:pageNumber'
 								element={<HomeScreen />}
 							/>
-							
+							<Route path='/shop/category/:category' element={<HomeScreen />} />
+							<Route path='/login' element={<LogInScreen />} />
+							<Route path='/register' element={<RegisterScreen />} />
+							<Route path='/profile' element={<ProfileScreen />} />
+							<Route path='/product/:id' element={<ProductScreen />} />
+							<Route path='/cart' element={<CartScreen />} />
+							<Route path='/shipping' element={<ShippingScreen />} />
+							<Route path='/placeorder' element={<PlaceOrderScreen />} />
+							<Route path='/cart/:id' element={<CartScreen />} />
+							<Route path='/orders/:id' element={<OrderScreen />} />
+							<Route path='/admin/overview' element={<OverviewScreen />} />
+							<Route path='/admin/userlist' element={<UserListScreen />} />
+							<Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
+							<Route
+								path='/admin/productlist'
+								element={<ProductListScreen />}
+							/>
+							<Route path='/admin/product/' element={<AddProductScreen />} />
+							<Route path='/admin/product/:id' element={<AddProductScreen />} />
+							<Route path='/admin/orderlist' element={<OrderListScreen />} />
 							{/* by putting ? after id makes it optional */}
 						</Routes>
 					</Container>
