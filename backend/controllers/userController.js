@@ -107,6 +107,42 @@ const deleteUser = asyncHandler(async (req, res) => {
 		throw new Error('User not found')
 	}
 })
+
+//@desc Update user profile and provide updated profile
+//@route PUT/api/users/profile
+//@access Private
+const updateUserProfile = asyncHandler(async (req, res) => {
+	const { email } = req.body
+	const user = await User.findById(req.user._id)
+	const modifiedEmailUser = await User.findOne({ email })
+
+	if (
+		modifiedEmailUser &&
+		JSON.stringify(req.user._id) !== JSON.stringify(modifiedEmailUser._id)
+	) {
+		res.status(400)
+		throw new Error('Another user with this Email already exists')
+	} else {
+		if (user) {
+			user.name = req.body.name || user.name
+			user.email = req.body.email || user.email
+			if (req.body.password) {
+				user.password = req.body.password
+			}
+			const updatedUser = await user.save()
+			res.json({
+				_id: updatedUser._id,
+				name: updatedUser.name,
+				email: updatedUser.email,
+				isAdmin: updatedUser.isAdmin,
+				token: generateToken(updatedUser._id),
+			})
+		} else {
+			res.status(401)
+			throw new Error('User not found')
+		}
+	}
+})
 //@desc Get user by ID
 //@route GET/api/users/:id
 //@access Private/Admin
@@ -121,6 +157,38 @@ const getUserByID = asyncHandler(async (req, res) => {
 	}
 })
 
+//@desc Update user profile
+//@route PUT/api/users/:id
+//@access Private/Admin
+const updateUser = asyncHandler(async (req, res) => {
+	const { email } = req.body
+	const modifyingUser = await User.findById(req.params.id)
+	const modifiedEmailUser = await User.findOne({ email })
+
+	if (
+		modifiedEmailUser &&
+		JSON.stringify(modifyingUser._id) !== JSON.stringify(modifiedEmailUser._id)
+	) {
+		res.status(400)
+		throw new Error('Another user with this Email already exists')
+	} else {
+		if (modifyingUser) {
+			modifyingUser.name = req.body.name || modifyingUser.name
+			modifyingUser.email = req.body.email || modifyingUser.email
+			modifyingUser.isAdmin = req.body.isAdmin
+			const updatedUser = await modifyingUser.save()
+			res.json({
+				_id: updatedUser._id,
+				name: updatedUser.name,
+				email: updatedUser.email,
+				isAdmin: updatedUser.isAdmin,
+			})
+		} else {
+			res.status(401)
+			throw new Error('User not found')
+		}
+	}
+})
 export {
 	authUser,
 	registerUser,
