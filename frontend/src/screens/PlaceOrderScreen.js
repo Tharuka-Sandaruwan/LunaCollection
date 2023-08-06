@@ -187,4 +187,3 @@ export const PlaceOrderScreen = () => {
 		</>
 	)
 }
-// finished without bugs

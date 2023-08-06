@@ -63,18 +63,18 @@ const Footer = () => {
 						</a>
 						<br />
 						<div>
-            <img
-              style={{ width: '50px', marginRight: '10px' }}
-              src='/images/visa.png'
-            ></img>
-            <img
-              style={{ width: '50px', marginRight: '10px' }}
-              src='/images/maestro.png'
-            ></img>
-            <img
-              style={{ width: '50px', marginRight: '10px' }}
-              src='/images/paypal.png'
-            ></img>
+							<img
+								style={{ width: '50px', marginRight: '10px' }}
+								src='/images/visa.png'
+							></img>
+							<img
+								style={{ width: '50px', marginRight: '10px' }}
+								src='/images/maestro.png'
+							></img>
+							<img
+								style={{ width: '50px', marginRight: '10px' }}
+								src='/images/paypal.png'
+							></img>
 						</div>
 					</Col>
 				</Row>
