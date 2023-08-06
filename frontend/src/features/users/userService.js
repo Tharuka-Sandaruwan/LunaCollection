@@ -37,3 +37,30 @@ const getAllUsers = async () => {
   const response = await axios.get(`/api/users/`, config);
   return response.data;
 };
+
+const deleteUser = async (id) => {
+  const token = decodeURI(getCookie("token"));
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.delete(`/api/users/${id}`, config);
+  return response.data;
+};
+const updateProfile = async ({ name, email, password }) => {
+  const token = decodeURI(getCookie("token"));
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.put(
+    `/api/users/profile`,
+    { name, email, password },
+    config
+  );
+  return response.data;
+};
