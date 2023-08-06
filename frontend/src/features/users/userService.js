@@ -64,3 +64,37 @@ const updateProfile = async ({ name, email, password }) => {
   );
   return response.data;
 };
+
+const getUserById = async (id) => {
+  const token = decodeURI(getCookie("token"));
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.get(`/api/users/${id}`, config);
+  return response.data;
+};
+const updateUserById = async (id, updateDetails) => {
+  const token = decodeURI(getCookie("token"));
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.put(`/api/users/${id}`, updateDetails, config);
+  return response.data;
+};
+const userService = {
+  login,
+  register,
+  getProfile,
+  getAllUsers,
+  deleteUser,
+  updateProfile,
+  getUserById,
+  updateUserById,
+};
+export default userService;
